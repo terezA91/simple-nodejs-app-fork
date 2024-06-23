@@ -19,7 +19,7 @@ jobs:
           #docker login -u ${{secrets.HUB_UNAME}} -p ${{secrets.HUB_PSW}}
           #docker push ${{secrets.HUB_UNAME}}/myimage:latest 
       - name: Docker pull
-        run : docker pull terezabisharyan/myimage
+        run : docker pull ${{secrets.HUB_UNAME}}/myimage
       - name: Docker run  
-        run : docker run -d --name test_${{env.SHA}} -p 8082:3000 terezabisharyan/myimage
+        run : docker run -d --name test_${{env.SHA}} -p 8082:3000 ${{secrets.HUB_UNAME}}/myimage
   
