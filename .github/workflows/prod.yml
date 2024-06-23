@@ -1,13 +1,13 @@
 name: For Production
 
 on:
-  release
+  release:
+    types: [created]
 
 jobs:
   build:
     env: 
       VERSION: ${{ github.event.release.name }}
-      #SHA: ${{ github.sha }}
   
     runs-on: self-hosted
 
