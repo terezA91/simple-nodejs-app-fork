@@ -1,9 +1,6 @@
 name: For dev environment
 
 on: workflow_dispatch
-  #push:
-    #branches:
-      #- main
 
 jobs:
   build:
@@ -22,11 +19,7 @@ jobs:
           docker login -u ${{secrets.HUB_UNAME}} -p ${{secrets.HUB_PSW}}
           docker push ${{secrets.HUB_UNAME}}/myimage:latest 
       - name: Docker pull
-        run : docker pull terezabisharyan/myimage
+        run : docker pull ${{secrets.HUB_UNAME}}/myimage
       - name: Docker run  
-        run : docker run -d --name dev_container -p 8081:3000 terezabisharyan/myimage
-    #services:
-      #myimage:
-        #image: terezabisharyan/myimage
-        #ports:
-          #- 3000:8080   
+        run : docker run -d --name dev_${{env.SHA}} -p 8080:3000 ${{secrets.HUB_UNAME}}/myimage
+  
