@@ -1,4 +1,4 @@
-name: For dev environment
+name: For Development
 
 on: workflow_dispatch
 
